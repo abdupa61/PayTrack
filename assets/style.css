@@ -49,7 +49,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
   box-shadow:var(--shadow-sm);
   display:flex;flex-direction:column;
   position:fixed;top:0;left:0;bottom:0;
-  z-index:200;transition:transform var(--tr)
+  z-index:500;transition:transform var(--tr)
 }
 .sidebar-brand{
   display:flex;align-items:center;gap:12px;
@@ -68,6 +68,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
   -webkit-background-clip:text;-webkit-text-fill-color:transparent
 }
 .brand-sub{font-size:11px;color:var(--t3);letter-spacing:.5px}
+.sidebar-close{display:none}
 
 .sidebar-nav{flex:1;padding:18px 12px;overflow-y:auto}
 .nav-section-title{
@@ -344,10 +345,23 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 }
 
 /* ── MODAL ── */
-.overlay{position:fixed;inset:0;background:rgba(15,23,42,.4);backdrop-filter:blur(3px);z-index:400;opacity:0;pointer-events:none;transition:opacity var(--tr)}
-.overlay.visible{opacity:1;pointer-events:all}
+.overlay{
+  position:fixed;inset:0;
+  background:rgba(15,23,42,0);
+  backdrop-filter:blur(0px);
+  -webkit-backdrop-filter:blur(0px);
+  z-index:400;
+  pointer-events:none;
+  transition:background var(--tr), backdrop-filter var(--tr), -webkit-backdrop-filter var(--tr);
+}
+.overlay.visible{
+  background:rgba(15,23,42,.4);
+  backdrop-filter:blur(3px);
+  -webkit-backdrop-filter:blur(3px);
+  pointer-events:all;
+}
 .overlay.hidden{display:none}
-.modal{position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
+.modal{position:fixed;inset:0;z-index:600;display:none;align-items:center;justify-content:center;padding:20px}
 .modal.open{display:flex}
 .modal-content{
   background:var(--surface);border:1px solid var(--border);
@@ -532,6 +546,26 @@ textarea{resize:vertical;min-height:56px}
 @media(max-width:768px){
   .sidebar{transform:translateX(-100%)}
   .sidebar.open{transform:translateX(0);box-shadow:var(--shadow-lg)}
+  .sidebar-close{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:var(--elevated);
+    border:1px solid var(--border);
+    color:var(--t2);
+    cursor:pointer;
+    font-size:14px;
+    transition:all var(--tr);
+    margin-left:auto
+  }
+  .sidebar-close:hover{
+    background:var(--rose-bg);
+    color:#e11d48;
+    border-color:#fecdd3
+  }
   .main-content{margin-left:0}
   .hamburger{display:flex}
   .kpi-section{
