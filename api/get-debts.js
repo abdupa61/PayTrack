@@ -31,14 +31,14 @@ export default async function handler(req, res) {
     }
 
     const rows = await response.json();
-    
+
     // Eğer tablo boşsa veya veri yoksa, boş bir obje/dizi dönebiliriz.
     if (!rows || rows.length === 0) {
-      return res.status(200).json({}); 
+      return res.status(200).json([]);
     }
 
     // Tüm PayTrack verisi JSON olarak `data` sütununda tutuluyor
-    return res.status(200).json(rows[0].data);
+    return res.status(200).json(rows[0].data || []);
   } catch (error) {
     console.error("Supabase load error:", error);
     return res.status(500).json({ error: "Failed to load data from Supabase." });
