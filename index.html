@@ -39,8 +39,8 @@
       <button class="btn-export" onclick="exportJSON()">⬇ Dışa Aktar</button>
       <label class="btn-import" for="importFile">⬆ İçe Aktar</label>
       <input type="file" id="importFile" accept=".json" onchange="importJSON(event)" style="display:none">
-      <div class="db-status">
-        <div class="db-dot"></div><span>localStorage</span>
+      <div class="db-status" id="dbStatus">
+        <div class="db-dot" id="dbDot"></div><span id="dbText">localStorage</span>
       </div>
     </div>
   </aside>
