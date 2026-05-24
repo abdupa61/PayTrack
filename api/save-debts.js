@@ -1,33 +1,53 @@
-const { put } = require('@vercel/blob');
+export default async function handler(req, res) {
+  // CORS ayarları
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-module.exports = async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
   }
 
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method Not Allowed' });
+  }
 
-  if (!token) {
-    return res.status(500).json({ error: "Vercel Blob is not configured on this environment." });
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    return res.status(500).json({ error: "Supabase environment variables are missing." });
   }
 
   try {
-    const records = req.body;
+    const dataToSave = req.body;
 
-    if (!Array.isArray(records)) {
-      return res.status(400).json({ error: 'Invalid data format. Expected an array of records.' });
-    }
+    // id=1 olan kaydı güncelleyeceğiz veya yoksa oluşturacağız
+    const payload = {
+      id: 1,
+      data: dataToSave
+    };
 
-    // Write to Vercel Blob, overwrite if exists (addRandomSuffix: false)
-    const blob = await put('paytrack.json', JSON.stringify(records, null, 2), {
-      access: 'public',
-      addRandomSuffix: false,
-      token: token
+    // Supabase REST API'de UPSERT yapmak için Prefer: resolution=merge-duplicates eklenir
+    const response = await fetch(`${supabaseUrl}/rest/v1/app_data`, {
+      method: 'POST',
+      headers: {
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates' 
+      },
+      body: JSON.stringify(payload)
     });
 
-    return res.status(200).json({ success: true, url: blob.url });
+    if (!response.ok) {
+      throw new Error(`Supabase returned ${response.status}: ${await response.text()}`);
+    }
+
+    return res.status(200).json({ success: true });
   } catch (error) {
-    console.error("API SAVE-DEBTS ERROR (BLOB):", error);
-    return res.status(500).json({ error: error.message });
+    console.error("Supabase save error:", error);
+    return res.status(500).json({ error: "Failed to save data to Supabase." });
   }
-};
+}
