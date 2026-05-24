@@ -20,16 +20,87 @@ const S = {
   selectedIds: new Set(),
 };
 
-// ── LOCALSTORAGE ─────────────────────────────────────
-function dbLoad() {
+// State indicator for active database
+let IS_USING_CLOUD = false;
+
+// ── DATABASE ACTIONS (CLOUD & LOCAL) ──────────────────
+async function dbLoad() {
+  const tbody = document.getElementById('tableBody');
+  const cardList = document.getElementById('cardList');
+  const loaderHTML = `<tr><td colspan="7" class="empty-row">🔄 Veritabanına bağlanılıyor...</td></tr>`;
+  
+  if (tbody) tbody.innerHTML = loaderHTML;
+  if (cardList) cardList.innerHTML = `<div class="empty-row">🔄 Veritabanına bağlanılıyor...</div>`;
+
+  try {
+    const res = await fetch('/api/get-debts');
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        S.records = data;
+        IS_USING_CLOUD = true;
+        updateDBStatus(true);
+        return;
+      }
+    }
+  } catch (err) {
+    console.warn("Vercel KV bağlantısı kurulamadı, localStorage kullanılıyor:", err);
+  }
+
+  // Fallback to localStorage
+  IS_USING_CLOUD = false;
+  updateDBStatus(false);
   try {
     S.records = JSON.parse(localStorage.getItem(DB_KEY)) || [];
-  } catch { S.records = []; }
-  if (!S.records.length) dbSeed();
+  } catch {
+    S.records = [];
+  }
+  if (!S.records.length) {
+    dbSeed();
+  }
 }
 
-function dbSave() {
+async function dbSave() {
+  // Always save to localStorage as a safety copy
   localStorage.setItem(DB_KEY, JSON.stringify(S.records));
+
+  if (IS_USING_CLOUD) {
+    try {
+      const res = await fetch('/api/save-debts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(S.records)
+      });
+      if (!res.ok) {
+        throw new Error(`HTTP error ${res.status}`);
+      }
+      toast('Değişiklikler buluta kaydedildi!', 'ok');
+    } catch (err) {
+      console.error("Buluta kaydetme hatası:", err);
+      toast('Değişiklikler yerelde kaydedildi, bulut senkronizasyonu başarısız!', 'err');
+    }
+  } else {
+    // Just local storage
+    toast('Değişiklikler yerelde kaydedildi.', 'info');
+  }
+}
+
+function updateDBStatus(isCloud) {
+  const dbText = document.getElementById('dbText');
+  const dbDot = document.getElementById('dbDot');
+  if (dbText && dbDot) {
+    if (isCloud) {
+      dbText.textContent = 'Vercel KV (Bulut)';
+      dbDot.style.background = '#22c55e'; // Green
+      dbDot.style.boxShadow = '0 0 8px rgba(34,197,94,0.6)';
+    } else {
+      dbText.textContent = 'localStorage (Yerel)';
+      dbDot.style.background = '#3b82f6'; // Blue
+      dbDot.style.boxShadow = '0 0 8px rgba(59,130,246,0.6)';
+    }
+  }
 }
 
 function nextId() {
@@ -826,29 +897,33 @@ function calcBudget() {
 }
 
 // ── INIT ─────────────────────────────────────────────
-dbLoad();
+async function init() {
+  await dbLoad();
 
-// Restore nakit (elimdeki para) from localStorage
-const savedNakit = localStorage.getItem('paytrack_nakit');
-if (savedNakit !== null) {
-  document.getElementById('nakit').value = savedNakit;
+  // Restore nakit (elimdeki para) from localStorage
+  const savedNakit = localStorage.getItem('paytrack_nakit');
+  if (savedNakit !== null) {
+    document.getElementById('nakit').value = savedNakit;
+  }
+
+  buildDonemList();
+
+  // Sayfa açılınca güncel ayı seç
+  const _now = new Date();
+  const _ay  = _now.getMonth() + 1;
+  const _yil = _now.getFullYear();
+
+  // Eğer o ay kayıt varsa onu aç, yoksa tüm dönemleri göster
+  const _varMi = S.records.some(r => r.donem_ay === _ay && r.donem_yil === _yil);
+  if (_varMi) {
+    selectDonem(_ay, _yil);
+  } else {
+    render();
+    calcBudget();
+  }
 }
 
-buildDonemList();
-
-// Sayfa açılınca güncel ayı seç
-const _now = new Date();
-const _ay  = _now.getMonth() + 1;
-const _yil = _now.getFullYear();
-
-// Eğer o ay kayıt varsa onu aç, yoksa tüm dönemleri göster
-const _varMi = S.records.some(r => r.donem_ay === _ay && r.donem_yil === _yil);
-if (_varMi) {
-  selectDonem(_ay, _yil);
-} else {
-  render();
-  calcBudget();
-}
+init();
 
 async function exportJSON() {
   const json = JSON.stringify(S.records, null, 2);
