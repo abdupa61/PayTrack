@@ -104,12 +104,29 @@ function showOverlay(){
 function hideOverlay(){
   const o=document.getElementById('overlay');
   o.classList.remove('visible');
-  setTimeout(()=>{ if(!document.querySelector('.modal.open')) o.classList.add('hidden'); },200);
+  setTimeout(()=>{ if(!document.querySelector('.modal.open') && !document.getElementById('sidebar').classList.contains('open')) o.classList.add('hidden'); },200);
 }
-document.getElementById('overlay').addEventListener('click',()=>{ closeModal(); closeDelModal(); });
+document.getElementById('overlay').addEventListener('click',()=>{
+  closeModal();
+  closeDelModal();
+  closeAnalytics();
+  const sb = document.getElementById('sidebar');
+  if (sb.classList.contains('open')) {
+    sb.classList.remove('open');
+    hideOverlay();
+  }
+});
 
 // ── SIDEBAR ──────────────────────────────────────────
-function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open')}
+function toggleSidebar(){
+  const sb = document.getElementById('sidebar');
+  const isOpen = sb.classList.toggle('open');
+  if (isOpen) {
+    showOverlay();
+  } else {
+    hideOverlay();
+  }
+}
 
 // ── PERIOD NAV ───────────────────────────────────────
 function buildDonemList() {
@@ -143,6 +160,13 @@ function selectDonem(ay, yil) {
   buildDonemList();
   render();
   calcBudget(); // Paneli seçili döneme göre güncelle
+
+  // Mobil görünüm için: Seçim yapıldıktan sonra menüyü kapat
+  const sb = document.getElementById('sidebar');
+  if (sb.classList.contains('open')) {
+    sb.classList.remove('open');
+    hideOverlay();
+  }
 }
 
 // ── FILTER / SORT ─────────────────────────────────────
