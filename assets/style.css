@@ -118,7 +118,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 
 /* ── MAIN ── */
-.main-content{margin-left:var(--sw);flex:1;min-height:100vh;display:flex;flex-direction:column}
+.main-content{margin-left:var(--sw);flex:1;min-height:100vh;display:flex;flex-direction:column;min-width:0}
 
 /* ── TOPBAR ── */
 .topbar{
@@ -203,7 +203,8 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .table-section{
   margin:20px 28px 32px;background:var(--surface);
   border:1px solid var(--border);border-radius:var(--r4);
-  overflow:hidden;flex:1;box-shadow:var(--shadow-sm)
+  overflow:hidden;flex:1;box-shadow:var(--shadow-sm);
+  min-width:0
 }
 .table-header{
   display:flex;align-items:center;justify-content:space-between;
@@ -576,6 +577,7 @@ textarea{resize:vertical;min-height:56px}
   .kpi-card {
     padding: 12px 14px;
     border-radius: var(--r2);
+    min-width: 0;
   }
   .kpi-icon {
     font-size: 20px;
