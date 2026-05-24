@@ -34,6 +34,7 @@ module.exports = async function handler(req, res) {
     const data = await response.json();
     return res.status(200).json({ success: true, result: data.result });
   } catch (error) {
+    console.error("API SAVE-DEBTS ERROR:", error);
     return res.status(500).json({ error: error.message });
   }
 };
