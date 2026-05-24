@@ -678,14 +678,34 @@ textarea{resize:vertical;min-height:56px}
   .topbar-actions {
     gap: 6px;
   }
-  .btn-topbar {
-    padding: 8px 10px;
-    font-size: 12px;
+  .btn-print {
+    display: none !important;
+  }
+  .btn-txt {
+    display: none !important;
+  }
+  .btn-analyze {
+    width: 36px;
+    height: 36px;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px !important;
+    border-radius: 50% !important;
   }
   .btn-add-top {
-    padding: 8px 12px;
-    font-size: 13px;
-    border-radius: var(--r1);
+    height: 36px;
+    padding: 0 12px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px !important;
+    border-radius: var(--r1) !important;
+  }
+  /* Mobil tarayıcılarda form elemanlarına tıklayınca sayfanın otomatik yakınlaşmasını (auto-zoom) engellemek için */
+  input[type=text], input[type=number], input[type=date], select, textarea {
+    font-size: 16px !important;
   }
 }
 
