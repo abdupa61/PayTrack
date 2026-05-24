@@ -233,10 +233,12 @@ function render() {
     return 0;
   });
 
-  // 6. Render rows
+  // 6. Render rows (table)
   const tbody = document.getElementById('tableBody');
   if (!rows.length) {
     tbody.innerHTML = `<tr><td colspan="7" class="empty-row">📭 Kayıt bulunamadı</td></tr>`;
+    const cardList = document.getElementById('cardList');
+    if (cardList) cardList.innerHTML = `<div class="empty-row">📭 Kayıt bulunamadı</div>`;
     document.getElementById('tableFooter').innerHTML = '0 kayıt';
     updateBulkDeleteButton();
     return;
@@ -269,6 +271,38 @@ function render() {
     </tr>`;
   }).join('');
 
+  // 7. Render mobile cards
+  const cardList = document.getElementById('cardList');
+  if (cardList) {
+    cardList.innerHTML = rows.map(r => {
+      const { cls, tag } = rowStatus(r);
+      const notIcon = (r.notlar && r.notlar.trim())
+        ? `<span class="not-icon" data-not="${escH(r.notlar)}">📝</span>`
+        : '';
+      return `
+      <div class="debt-card ${cls}" id="card-${r.id}">
+        <div class="dc-top">
+          <div class="dc-kalem">
+            <button class="check-btn ${r.odendi?'checked':''}" onclick="toggleOdeme(${r.id})" title="${r.odendi?'Ödendi — geri al':'Öde'}">✓</button>
+            <div class="dc-kalem-text">
+              <span class="kalem-cell">${escH(r.kalem)}${tag}${notIcon}</span>
+              <div class="dc-meta">
+                <span class="dc-tarih">📅 ${fmtDate(r.tarih)}</span>
+                <span class="donem-pill">${MONTHS[r.donem_ay]} ${r.donem_yil}</span>
+              </div>
+            </div>
+          </div>
+          <span class="dc-tutar ${r.odendi?'tutar-paid':''}">${fmtTL(r.tutar)}</span>
+        </div>
+        <div class="dc-actions">
+          <input type="checkbox" class="row-sel-cb" data-id="${r.id}" onchange="toggleSelectRow(${r.id}, this)" ${S.selectedIds.has(r.id)?'checked':''}>
+          <button class="btn-copy" onclick="copyToNextMonth(${r.id})" title="Gelecek aya kopyala">📋</button>
+          <button class="btn-edit" onclick="openModal(${r.id})" title="Düzenle">✏️</button>
+          <button class="btn-del"  onclick="openDelModal(${r.id})" title="Sil">🗑️</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
 
   const total = rows.reduce((s,r)=>s+r.tutar,0);
   const odenen = rows.filter(r=>r.odendi).reduce((s,r)=>s+r.tutar,0);
@@ -304,12 +338,12 @@ function toggleOdeme(id) {
   r.odendi = !r.odendi;
   dbSave();
 
-  // Smooth fade
-  const tr = document.getElementById(`row-${id}`);
-  if (tr) { tr.style.transition='opacity .25s'; tr.style.opacity='0.2'; }
+  // Smooth fade — both table row and mobile card
+  const tr   = document.getElementById(`row-${id}`);
+  const card = document.getElementById(`card-${id}`);
+  if (tr)   { tr.style.transition='opacity .25s';   tr.style.opacity='0.2'; }
+  if (card) { card.style.transition='opacity .25s'; card.style.opacity='0.2'; }
   setTimeout(()=>{ buildDonemList(); render(); calcBudget(); }, 260);
-
-
 }
 
 // ── MODAL ADD/EDIT ────────────────────────────────────
