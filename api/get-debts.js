@@ -28,6 +28,7 @@ module.exports = async function handler(req, res) {
     
     return res.status(200).json(records);
   } catch (error) {
+    console.error("API GET-DEBTS ERROR:", error);
     return res.status(500).json({ error: error.message });
   }
 };
