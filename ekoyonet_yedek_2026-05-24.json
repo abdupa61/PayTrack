@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "odendi": true,
+    "tarih": "2025-12-07",
+    "kalem": "Enpara",
+    "tutar": 5892,
+    "donem_ay": 12,
+    "donem_yil": 2025,
+    "notlar": ""
+  },
+  {
+    "id": 2,
+    "odendi": true,
+    "tarih": "2025-12-25",
+    "kalem": "Axess Ertele",
+    "tutar": 500000,
+    "donem_ay": 12,
+    "donem_yil": 2025,
+    "notlar": ""
+  },
+  {
+    "id": 3,
+    "odendi": true,
+    "tarih": "2026-01-01",
+    "kalem": "Axess ertele",
+    "tutar": 820000,
+    "donem_ay": 1,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 4,
+    "odendi": true,
+    "tarih": "2026-01-05",
+    "kalem": "QNB",
+    "tutar": 27500,
+    "donem_ay": 1,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 5,
+    "odendi": true,
+    "tarih": "2026-01-07",
+    "kalem": "Enpara",
+    "tutar": 3300,
+    "donem_ay": 1,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 6,
+    "odendi": true,
+    "tarih": "2026-01-14",
+    "kalem": "Benim Kuveyttürk Aktar-Döndür",
+    "tutar": 200000,
+    "donem_ay": 1,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 7,
+    "odendi": true,
+    "tarih": "2026-01-15",
+    "kalem": "Akbank Kredi",
+    "tutar": 15000,
+    "donem_ay": 1,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 8,
+    "odendi": true,
+    "tarih": "2026-05-04",
+    "kalem": "axess 9272",
+    "tutar": 447039,
+    "donem_ay": 5,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 9,
+    "odendi": true,
+    "tarih": "2026-06-01",
+    "kalem": "5580 Axess",
+    "tutar": 6935,
+    "donem_ay": 6,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 10,
+    "odendi": true,
+    "tarih": "2026-06-01",
+    "kalem": "Balkon Takımı Taksit",
+    "tutar": 10000,
+    "donem_ay": 6,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 11,
+    "odendi": true,
+    "tarih": "2026-06-02",
+    "kalem": "7170 Wings",
+    "tutar": 3418,
+    "donem_ay": 6,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 12,
+    "odendi": false,
+    "tarih": "2026-06-03",
+    "kalem": "9272 Axess",
+    "tutar": 94016,
+    "donem_ay": 6,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 13,
+    "odendi": false,
+    "tarih": "2026-06-05",
+    "kalem": "4261 Axess",
+    "tutar": 10331,
+    "donem_ay": 6,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 14,
+    "odendi": false,
+    "tarih": "2026-06-05",
+    "kalem": "QNB",
+    "tutar": 1440,
+    "donem_ay": 6,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 15,
+    "odendi": false,
+    "tarih": "2026-06-11",
+    "kalem": "9997 Axess",
+    "tutar": 7707,
+    "donem_ay": 6,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 16,
+    "odendi": false,
+    "tarih": "2026-06-18",
+    "kalem": "0723 Wings",
+    "tutar": 6984,
+    "donem_ay": 6,
+    "donem_yil": 2026,
+    "notlar": ""
+  },
+  {
+    "id": 17,
+    "odendi": false,
+    "tarih": "2026-07-05",
+    "kalem": "axess 2523",
+    "tutar": 900000,
+    "donem_ay": 7,
+    "donem_yil": 2026,
+    "notlar": ""
+  }
+]
