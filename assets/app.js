@@ -5,18 +5,18 @@
 // ═══════════════════════════════════════════════════
 
 const DB_KEY = 'paytrack_debts';
-const MONTHS   = ['','Ocak','Şubat','Mart','Nisan','Mayıs','Haziran',
-                  'Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const MONTHS = ['', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran',
+  'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 
 // ── STATE ────────────────────────────────────────────
 const S = {
-  records:  [],
-  filter:   'all',
-  sortCol:  'tarih',
-  sortDir:  'asc',
+  records: [],
+  filter: 'all',
+  sortCol: 'tarih',
+  sortDir: 'asc',
   donem_ay: null,
-  donem_yil:null,
-  delId:    null,
+  donem_yil: null,
+  delId: null,
   selectedIds: new Set(),
 };
 
@@ -28,7 +28,7 @@ async function dbLoad() {
   const tbody = document.getElementById('tableBody');
   const cardList = document.getElementById('cardList');
   const loaderHTML = `<tr><td colspan="7" class="empty-row">🔄 Veritabanına bağlanılıyor...</td></tr>`;
-  
+
   if (tbody) tbody.innerHTML = loaderHTML;
   if (cardList) cardList.innerHTML = `<div class="empty-row">🔄 Veritabanına bağlanılıyor...</div>`;
 
@@ -110,74 +110,74 @@ function nextId() {
 function dbSeed() {
   // Ekran görüntüsündeki örnek veriler
   S.records = [
-    {id:1, odendi:true,  tarih:'2025-12-07', kalem:'Enpara',                         tutar:5892,      donem_ay:12, donem_yil:2025, notlar:''},
-    {id:2, odendi:true,  tarih:'2025-12-25', kalem:'Axess Ertele',                   tutar:500000,    donem_ay:12, donem_yil:2025, notlar:''},
-    {id:3, odendi:true,  tarih:'2026-01-01', kalem:'Axess ertele',                   tutar:820000,    donem_ay:1,  donem_yil:2026, notlar:''},
-    {id:4, odendi:true,  tarih:'2026-01-05', kalem:'QNB',                            tutar:27500,     donem_ay:1,  donem_yil:2026, notlar:''},
-    {id:5, odendi:true,  tarih:'2026-01-07', kalem:'Enpara',                         tutar:3300,      donem_ay:1,  donem_yil:2026, notlar:''},
-    {id:6, odendi:true,  tarih:'2026-01-14', kalem:'Benim Kuveyttürk Aktar-Döndür',  tutar:200000,    donem_ay:1,  donem_yil:2026, notlar:''},
-    {id:7, odendi:true,  tarih:'2026-01-15', kalem:'Akbank Kredi',                   tutar:15000,     donem_ay:1,  donem_yil:2026, notlar:''},
-    {id:8, odendi:true,  tarih:'2026-05-04', kalem:'axess 9272',                     tutar:447039,    donem_ay:5,  donem_yil:2026, notlar:''},
-    {id:9, odendi:false, tarih:'2026-06-01', kalem:'5580 Axess',                     tutar:6935,      donem_ay:6,  donem_yil:2026, notlar:''},
-    {id:10,odendi:false, tarih:'2026-06-01', kalem:'Balkon Takımı Taksit',            tutar:10000,     donem_ay:6,  donem_yil:2026, notlar:''},
-    {id:11,odendi:false, tarih:'2026-06-02', kalem:'7170 Wings',                     tutar:3418,      donem_ay:6,  donem_yil:2026, notlar:''},
-    {id:12,odendi:false, tarih:'2026-06-03', kalem:'9272 Axess',                     tutar:94016,     donem_ay:6,  donem_yil:2026, notlar:''},
-    {id:13,odendi:false, tarih:'2026-06-05', kalem:'4261 Axess',                     tutar:10331,     donem_ay:6,  donem_yil:2026, notlar:''},
-    {id:14,odendi:false, tarih:'2026-06-05', kalem:'QNB',                            tutar:1440,      donem_ay:6,  donem_yil:2026, notlar:''},
-    {id:15,odendi:false, tarih:'2026-06-11', kalem:'9997 Axess',                     tutar:7707,      donem_ay:6,  donem_yil:2026, notlar:''},
-    {id:16,odendi:false, tarih:'2026-06-18', kalem:'0723 Wings',                     tutar:6984,      donem_ay:6,  donem_yil:2026, notlar:''},
-    {id:17,odendi:false, tarih:'2026-07-05', kalem:'axess 2523',                     tutar:900000,    donem_ay:7,  donem_yil:2026, notlar:''},
+    { id: 1, odendi: true, tarih: '2025-12-07', kalem: 'Enpara', tutar: 5892, donem_ay: 12, donem_yil: 2025, notlar: '' },
+    { id: 2, odendi: true, tarih: '2025-12-25', kalem: 'Axess Ertele', tutar: 500000, donem_ay: 12, donem_yil: 2025, notlar: '' },
+    { id: 3, odendi: true, tarih: '2026-01-01', kalem: 'Axess ertele', tutar: 820000, donem_ay: 1, donem_yil: 2026, notlar: '' },
+    { id: 4, odendi: true, tarih: '2026-01-05', kalem: 'QNB', tutar: 27500, donem_ay: 1, donem_yil: 2026, notlar: '' },
+    { id: 5, odendi: true, tarih: '2026-01-07', kalem: 'Enpara', tutar: 3300, donem_ay: 1, donem_yil: 2026, notlar: '' },
+    { id: 6, odendi: true, tarih: '2026-01-14', kalem: 'Benim Kuveyttürk Aktar-Döndür', tutar: 200000, donem_ay: 1, donem_yil: 2026, notlar: '' },
+    { id: 7, odendi: true, tarih: '2026-01-15', kalem: 'Akbank Kredi', tutar: 15000, donem_ay: 1, donem_yil: 2026, notlar: '' },
+    { id: 8, odendi: true, tarih: '2026-05-04', kalem: 'axess 9272', tutar: 447039, donem_ay: 5, donem_yil: 2026, notlar: '' },
+    { id: 9, odendi: false, tarih: '2026-06-01', kalem: '5580 Axess', tutar: 6935, donem_ay: 6, donem_yil: 2026, notlar: '' },
+    { id: 10, odendi: false, tarih: '2026-06-01', kalem: 'Balkon Takımı Taksit', tutar: 10000, donem_ay: 6, donem_yil: 2026, notlar: '' },
+    { id: 11, odendi: false, tarih: '2026-06-02', kalem: '7170 Wings', tutar: 3418, donem_ay: 6, donem_yil: 2026, notlar: '' },
+    { id: 12, odendi: false, tarih: '2026-06-03', kalem: '9272 Axess', tutar: 94016, donem_ay: 6, donem_yil: 2026, notlar: '' },
+    { id: 13, odendi: false, tarih: '2026-06-05', kalem: '4261 Axess', tutar: 10331, donem_ay: 6, donem_yil: 2026, notlar: '' },
+    { id: 14, odendi: false, tarih: '2026-06-05', kalem: 'QNB', tutar: 1440, donem_ay: 6, donem_yil: 2026, notlar: '' },
+    { id: 15, odendi: false, tarih: '2026-06-11', kalem: '9997 Axess', tutar: 7707, donem_ay: 6, donem_yil: 2026, notlar: '' },
+    { id: 16, odendi: false, tarih: '2026-06-18', kalem: '0723 Wings', tutar: 6984, donem_ay: 6, donem_yil: 2026, notlar: '' },
+    { id: 17, odendi: false, tarih: '2026-07-05', kalem: 'axess 2523', tutar: 900000, donem_ay: 7, donem_yil: 2026, notlar: '' },
   ];
   dbSave();
 }
 
 // ── FORMAT ───────────────────────────────────────────
 function fmtTL(v) {
-  return new Intl.NumberFormat('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2}).format(v||0) + ' ₺';
+  return new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v || 0) + ' ₺';
 }
 function fmtDate(iso) {
   if (!iso) return '—';
-  const [y,m,d] = iso.split('-');
+  const [y, m, d] = iso.split('-');
   return `${d}.${m}.${y}`;
 }
-function escH(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+function escH(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') }
 
 // ── VADE DURUMU ───────────────────────────────────────
 // Dönür: { cls, tag }
 function rowStatus(r) {
   if (r.odendi) return { cls: 'is-paid', tag: '' };
-  const today = new Date(); today.setHours(0,0,0,0);
-  const due   = new Date(r.tarih); due.setHours(0,0,0,0);
-  const diff  = Math.round((due - today) / 86400000); // gün farkı
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const due = new Date(r.tarih); due.setHours(0, 0, 0, 0);
+  const diff = Math.round((due - today) / 86400000); // gün farkı
 
-  if (diff < 0)  return { cls: 'row-overdue',  tag: `<span class="vade-tag vade-gecmis">⚠ ${Math.abs(diff)} gün geçti</span>` };
+  if (diff < 0) return { cls: 'row-overdue', tag: `<span class="vade-tag vade-gecmis">⚠ ${Math.abs(diff)} gün geçti</span>` };
   if (diff <= 7) return { cls: 'row-due-soon', tag: `<span class="vade-tag vade-yakin">⏰ ${diff === 0 ? 'Bugün!' : diff + ' gün kaldı'}</span>` };
   return { cls: '', tag: '' };
 }
 
 
 // ── TOAST ────────────────────────────────────────────
-function toast(msg, type='ok') {
-  const icons = {ok:'✅', err:'❌', info:'ℹ️'};
+function toast(msg, type = 'ok') {
+  const icons = { ok: '✅', err: '❌', info: 'ℹ️' };
   const el = document.createElement('div');
   el.className = `toast t-${type}`;
-  el.innerHTML = `<span>${icons[type]||'•'}</span><span>${msg}</span>`;
+  el.innerHTML = `<span>${icons[type] || '•'}</span><span>${msg}</span>`;
   document.getElementById('toastBox').appendChild(el);
-  setTimeout(()=>{ el.style.animation='tOut .3s ease forwards'; setTimeout(()=>el.remove(),300); }, 3000);
+  setTimeout(() => { el.style.animation = 'tOut .3s ease forwards'; setTimeout(() => el.remove(), 300); }, 3000);
 }
 
 // ── OVERLAY ──────────────────────────────────────────
-function showOverlay(){
-  const o=document.getElementById('overlay');
+function showOverlay() {
+  const o = document.getElementById('overlay');
   o.classList.remove('hidden');
-  requestAnimationFrame(()=>o.classList.add('visible'));
+  requestAnimationFrame(() => o.classList.add('visible'));
 }
-function hideOverlay(){
-  const o=document.getElementById('overlay');
+function hideOverlay() {
+  const o = document.getElementById('overlay');
   o.classList.remove('visible');
-  setTimeout(()=>{ if(!document.querySelector('.modal.open') && !document.getElementById('sidebar').classList.contains('open')) o.classList.add('hidden'); },200);
+  setTimeout(() => { if (!document.querySelector('.modal.open') && !document.getElementById('sidebar').classList.contains('open')) o.classList.add('hidden'); }, 200);
 }
-document.getElementById('overlay').addEventListener('click',()=>{
+document.getElementById('overlay').addEventListener('click', () => {
   closeModal();
   closeDelModal();
   closeAnalytics();
@@ -189,7 +189,7 @@ document.getElementById('overlay').addEventListener('click',()=>{
 });
 
 // ── SIDEBAR ──────────────────────────────────────────
-function toggleSidebar(){
+function toggleSidebar() {
   const sb = document.getElementById('sidebar');
   const isOpen = sb.classList.toggle('open');
   if (isOpen) {
@@ -203,8 +203,8 @@ function toggleSidebar(){
 function buildDonemList() {
   const periods = {};
   S.records.forEach(r => {
-    const k = `${r.donem_yil}-${String(r.donem_ay).padStart(2,'0')}`;
-    if (!periods[k]) periods[k] = {ay:r.donem_ay, yil:r.donem_yil, total:0, pending:0};
+    const k = `${r.donem_yil}-${String(r.donem_ay).padStart(2, '0')}`;
+    if (!periods[k]) periods[k] = { ay: r.donem_ay, yil: r.donem_yil, total: 0, pending: 0 };
     periods[k].total++;
     if (!r.odendi) periods[k].pending++;
   });
@@ -216,18 +216,18 @@ function buildDonemList() {
   keys.forEach(k => {
     const p = periods[k];
     const el = document.createElement('div');
-    el.className = 'donem-item' + (S.donem_ay==p.ay && S.donem_yil==p.yil ? ' active' : '');
+    el.className = 'donem-item' + (S.donem_ay == p.ay && S.donem_yil == p.yil ? ' active' : '');
     el.innerHTML = `<span>${MONTHS[p.ay]} ${p.yil}</span>
-      <span class="donem-badge">${p.pending>0 ? p.pending+' bekl.' : '✓'}</span>`;
+      <span class="donem-badge">${p.pending > 0 ? p.pending + ' bekl.' : '✓'}</span>`;
     el.onclick = () => selectDonem(p.ay, p.yil);
     list.appendChild(el);
   });
 }
 
 function selectDonem(ay, yil) {
-  S.donem_ay  = ay;
+  S.donem_ay = ay;
   S.donem_yil = yil;
-  document.getElementById('pageTitle').textContent = (ay&&yil) ? `${MONTHS[ay]} ${yil}` : 'Tüm Dönemler';
+  document.getElementById('pageTitle').textContent = (ay && yil) ? `${MONTHS[ay]} ${yil}` : 'Tüm Dönemler';
   buildDonemList();
   render();
   calcBudget(); // Paneli seçili döneme göre güncelle
@@ -243,13 +243,13 @@ function selectDonem(ay, yil) {
 // ── FILTER / SORT ─────────────────────────────────────
 function setFilter(f, el) {
   S.filter = f;
-  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
   render();
 }
 
 function sortBy(col) {
-  S.sortDir = (S.sortCol===col && S.sortDir==='asc') ? 'desc' : 'asc';
+  S.sortDir = (S.sortCol === col && S.sortDir === 'asc') ? 'desc' : 'asc';
   S.sortCol = col;
   render();
 }
@@ -258,29 +258,29 @@ document.getElementById('searchInput').addEventListener('input', render);
 
 // ── KPI ──────────────────────────────────────────────
 function updateKPI(rows) {
-  const toplam   = rows.reduce((s,r)=>s+r.tutar,0);
-  const odenen   = rows.filter(r=>r.odendi).reduce((s,r)=>s+r.tutar,0);
+  const toplam = rows.reduce((s, r) => s + r.tutar, 0);
+  const odenen = rows.filter(r => r.odendi).reduce((s, r) => s + r.tutar, 0);
   const bekleyen = toplam - odenen;
-  const oran     = toplam>0 ? (odenen/toplam*100) : 0;
+  const oran = toplam > 0 ? (odenen / toplam * 100) : 0;
 
-  document.getElementById('kpiToplam').textContent   = fmtTL(toplam);
-  document.getElementById('kpiOdendi').textContent   = fmtTL(odenen);
+  document.getElementById('kpiToplam').textContent = fmtTL(toplam);
+  document.getElementById('kpiOdendi').textContent = fmtTL(odenen);
   document.getElementById('kpiBekleyen').textContent = fmtTL(bekleyen);
-  document.getElementById('kpiOran').textContent     = oran.toFixed(1)+'%';
+  document.getElementById('kpiOran').textContent = oran.toFixed(1) + '%';
 
-  document.getElementById('barToplam').style.width   = '100%';
-  document.getElementById('barOdendi').style.width   = (toplam>0?(odenen/toplam*100):0)+'%';
-  document.getElementById('barBekleyen').style.width = (toplam>0?(bekleyen/toplam*100):0)+'%';
+  document.getElementById('barToplam').style.width = '100%';
+  document.getElementById('barOdendi').style.width = (toplam > 0 ? (odenen / toplam * 100) : 0) + '%';
+  document.getElementById('barBekleyen').style.width = (toplam > 0 ? (bekleyen / toplam * 100) : 0) + '%';
 
   const fill = oran.toFixed(1);
-  document.getElementById('donutSeg').setAttribute('stroke-dasharray', `${fill} ${(100-fill).toFixed(1)}`);
+  document.getElementById('donutSeg').setAttribute('stroke-dasharray', `${fill} ${(100 - fill).toFixed(1)}`);
 }
 
 // ── RENDER ───────────────────────────────────────────
 function render() {
   // 1. Period filter
   let rows = S.records.filter(r =>
-    (!S.donem_ay  || r.donem_ay  == S.donem_ay) &&
+    (!S.donem_ay || r.donem_ay == S.donem_ay) &&
     (!S.donem_yil || r.donem_yil == S.donem_yil)
   );
 
@@ -288,28 +288,34 @@ function render() {
   updateKPI(rows);
 
   // 3. Status filter
-  if (S.filter==='paid')    rows = rows.filter(r=>r.odendi);
-  if (S.filter==='pending') rows = rows.filter(r=>!r.odendi);
+  if (S.filter === 'paid') rows = rows.filter(r => r.odendi);
+  if (S.filter === 'pending') rows = rows.filter(r => !r.odendi);
 
   // 4. Search
   const q = document.getElementById('searchInput').value.toLowerCase();
-  if (q) rows = rows.filter(r => r.kalem.toLowerCase().includes(q) || (r.notlar||'').toLowerCase().includes(q));
+  if (q) rows = rows.filter(r => r.kalem.toLowerCase().includes(q) || (r.notlar || '').toLowerCase().includes(q));
 
   // 5. Sort
-  rows.sort((a,b)=>{
-    let va=a[S.sortCol], vb=b[S.sortCol];
-    if (S.sortCol==='tutar'){va=+va;vb=+vb;}
-    if(va<vb) return S.sortDir==='asc'?-1:1;
-    if(va>vb) return S.sortDir==='asc'?1:-1;
+  rows.sort((a, b) => {
+    let va = a[S.sortCol], vb = b[S.sortCol];
+    if (S.sortCol === 'tutar') { va = +va; vb = +vb; }
+    if (va < vb) return S.sortDir === 'asc' ? -1 : 1;
+    if (va > vb) return S.sortDir === 'asc' ? 1 : -1;
     return 0;
   });
 
   // 6. Render rows (table)
   const tbody = document.getElementById('tableBody');
   if (!rows.length) {
-    tbody.innerHTML = `<tr><td colspan="7" class="empty-row">📭 Kayıt bulunamadı</td></tr>`;
+    const emptyHTML = `
+      <div style="text-align:center;padding:48px 20px">
+        <div style="font-size:48px;margin-bottom:12px">📭</div>
+        <div style="font-size:15px;font-weight:600;color:var(--t2);margin-bottom:4px">Kayıt bulunamadı</div>
+        <div style="font-size:13px;color:var(--t3)">Filtre veya arama kriterini değiştirin</div>
+      </div>`;
+    tbody.innerHTML = `<tr><td colspan="7" style="padding:0">${emptyHTML}</td></tr>`;
     const cardList = document.getElementById('cardList');
-    if (cardList) cardList.innerHTML = `<div class="empty-row">📭 Kayıt bulunamadı</div>`;
+    if (cardList) cardList.innerHTML = emptyHTML;
     document.getElementById('tableFooter').innerHTML = '0 kayıt';
     updateBulkDeleteButton();
     return;
@@ -318,20 +324,20 @@ function render() {
   tbody.innerHTML = rows.map(r => {
     const { cls, tag } = rowStatus(r);
     const notIcon = (r.notlar && r.notlar.trim())
-      ? `<span class="not-icon" data-not="${escH(r.notlar)}">📝</span>`
+      ? `<span class="not-icon" data-not="${escH(r.notlar)}" onclick="toggleNotTooltip(this)" title="Notu Göster">📝</span>`
       : '';
     return `
     <tr class="${cls}" id="row-${r.id}">
       <td class="col-sel">
-        <input type="checkbox" class="row-sel-cb" data-id="${r.id}" onchange="toggleSelectRow(${r.id}, this)" ${S.selectedIds.has(r.id)?'checked':''}>
+        <input type="checkbox" class="row-sel-cb" data-id="${r.id}" onchange="toggleSelectRow(${r.id}, this)" ${S.selectedIds.has(r.id) ? 'checked' : ''}>
       </td>
       <td class="col-check">
-        <button class="check-btn ${r.odendi?'checked':''}" onclick="toggleOdeme(${r.id})" title="${r.odendi?'Ödendi — geri al':'Öde'}">✓</button>
+        <button class="check-btn ${r.odendi ? 'checked' : ''}" onclick="toggleOdeme(${r.id})" title="${r.odendi ? 'Ödendi — geri al' : 'Öde'}">✓</button>
       </td>
       <td>${fmtDate(r.tarih)}</td>
       <td class="kalem-cell">${escH(r.kalem)}${tag}${notIcon}</td>
       <td><span class="donem-pill">${MONTHS[r.donem_ay]} ${r.donem_yil}</span></td>
-      <td class="tutar-cell ${r.odendi?'tutar-paid':''}">${fmtTL(r.tutar)}</td>
+      <td class="tutar-cell ${r.odendi ? 'tutar-paid' : ''}">${fmtTL(r.tutar)}</td>
       <td class="col-act">
         <div class="action-btns">
           <button class="btn-copy" onclick="copyToNextMonth(${r.id})" title="Gelecek aya kopyala">📋</button>
@@ -348,13 +354,13 @@ function render() {
     cardList.innerHTML = rows.map(r => {
       const { cls, tag } = rowStatus(r);
       const notIcon = (r.notlar && r.notlar.trim())
-        ? `<span class="not-icon" data-not="${escH(r.notlar)}">📝</span>`
+        ? `<span class="not-icon" data-not="${escH(r.notlar)}" onclick="toggleNotTooltip(this)" title="Notu Göster">📝</span>`
         : '';
       return `
       <div class="debt-card ${cls}" id="card-${r.id}">
         <div class="dc-top">
           <div class="dc-kalem">
-            <button class="check-btn ${r.odendi?'checked':''}" onclick="toggleOdeme(${r.id})" title="${r.odendi?'Ödendi — geri al':'Öde'}">✓</button>
+            <button class="check-btn ${r.odendi ? 'checked' : ''}" onclick="toggleOdeme(${r.id})" title="${r.odendi ? 'Ödendi — geri al' : 'Öde'}">✓</button>
             <div class="dc-kalem-text">
               <span class="kalem-cell">${escH(r.kalem)}${tag}${notIcon}</span>
               <div class="dc-meta">
@@ -363,10 +369,11 @@ function render() {
               </div>
             </div>
           </div>
-          <span class="dc-tutar ${r.odendi?'tutar-paid':''}">${fmtTL(r.tutar)}</span>
+          <span class="dc-tutar ${r.odendi ? 'tutar-paid' : ''}">${fmtTL(r.tutar)}</span>
         </div>
         <div class="dc-actions">
-          <input type="checkbox" class="row-sel-cb" data-id="${r.id}" onchange="toggleSelectRow(${r.id}, this)" ${S.selectedIds.has(r.id)?'checked':''}>
+          <input type="checkbox" class="row-sel-cb" data-id="${r.id}" onchange="toggleSelectRow(${r.id}, this)" ${S.selectedIds.has(r.id) ? 'checked' : ''}>
+          <div class="dc-actions-spacer"></div>
           <button class="btn-copy" onclick="copyToNextMonth(${r.id})" title="Gelecek aya kopyala">📋</button>
           <button class="btn-edit" onclick="openModal(${r.id})" title="Düzenle">✏️</button>
           <button class="btn-del"  onclick="openDelModal(${r.id})" title="Sil">🗑️</button>
@@ -375,8 +382,8 @@ function render() {
     }).join('');
   }
 
-  const total = rows.reduce((s,r)=>s+r.tutar,0);
-  const odenen = rows.filter(r=>r.odendi).reduce((s,r)=>s+r.tutar,0);
+  const total = rows.reduce((s, r) => s + r.tutar, 0);
+  const odenen = rows.filter(r => r.odendi).reduce((s, r) => s + r.tutar, 0);
   const bekleyen = total - odenen;
 
   let footerRightHTML = '';
@@ -404,23 +411,23 @@ function render() {
 
 // ── TOGGLE PAYMENT ────────────────────────────────────
 function toggleOdeme(id) {
-  const r = S.records.find(x=>x.id===id);
+  const r = S.records.find(x => x.id === id);
   if (!r) return;
   r.odendi = !r.odendi;
   dbSave();
 
   // Smooth fade — both table row and mobile card
-  const tr   = document.getElementById(`row-${id}`);
+  const tr = document.getElementById(`row-${id}`);
   const card = document.getElementById(`card-${id}`);
-  if (tr)   { tr.style.transition='opacity .25s';   tr.style.opacity='0.2'; }
-  if (card) { card.style.transition='opacity .25s'; card.style.opacity='0.2'; }
-  setTimeout(()=>{ buildDonemList(); render(); calcBudget(); }, 260);
+  if (tr) { tr.style.transition = 'opacity .25s'; tr.style.opacity = '0.2'; }
+  if (card) { card.style.transition = 'opacity .25s'; card.style.opacity = '0.2'; }
+  setTimeout(() => { buildDonemList(); render(); calcBudget(); }, 260);
 }
 
 // ── MODAL ADD/EDIT ────────────────────────────────────
 let editId = null;
 
-function openModal(id=null) {
+function openModal(id = null) {
   editId = id;
   document.getElementById('modalTitle').textContent = id ? 'Borcu Düzenle' : 'Yeni Borç Ekle';
   document.getElementById('borcForm').reset();
@@ -434,21 +441,21 @@ function openModal(id=null) {
   }
 
   const now = new Date();
-  document.getElementById('fTarih').value = now.toISOString().slice(0,10);
-  document.getElementById('fAy').value    = now.getMonth()+1;
-  document.getElementById('fYil').value   = now.getFullYear();
+  document.getElementById('fTarih').value = now.toISOString().slice(0, 10);
+  document.getElementById('fAy').value = now.getMonth() + 1;
+  document.getElementById('fYil').value = now.getFullYear();
 
   if (id) {
-    const r = S.records.find(x=>x.id===id);
+    const r = S.records.find(x => x.id === id);
     if (r) {
-      document.getElementById('fKalem').value  = r.kalem;
-      document.getElementById('fTutar').value  = r.tutar;
-      document.getElementById('fTarih').value  = r.tarih;
-      document.getElementById('fAy').value     = r.donem_ay;
-      document.getElementById('fYil').value    = r.donem_yil;
-      document.getElementById('fNotlar').value = r.notlar||'';
+      document.getElementById('fKalem').value = r.kalem;
+      document.getElementById('fTutar').value = r.tutar;
+      document.getElementById('fTarih').value = r.tarih;
+      document.getElementById('fAy').value = r.donem_ay;
+      document.getElementById('fYil').value = r.donem_yil;
+      document.getElementById('fNotlar').value = r.notlar || '';
       document.getElementById('fOdendi').checked = r.odendi;
-      document.getElementById('toggleLabel').textContent = r.odendi?'Ödendi':'Ödenmedi';
+      document.getElementById('toggleLabel').textContent = r.odendi ? 'Ödendi' : 'Ödenmedi';
     }
   }
   showOverlay();
@@ -456,13 +463,13 @@ function openModal(id=null) {
   document.getElementById('fKalem').focus();
 }
 
-function closeModal(){
+function closeModal() {
   document.getElementById('modal').classList.remove('open');
   hideOverlay();
-  editId=null;
+  editId = null;
 }
 
-function updateToggleLabel(){
+function updateToggleLabel() {
   document.getElementById('toggleLabel').textContent =
     document.getElementById('fOdendi').checked ? 'Ödendi' : 'Ödenmedi';
 }
@@ -470,19 +477,19 @@ function updateToggleLabel(){
 function submitForm(e) {
   e.preventDefault();
   const data = {
-    kalem:     document.getElementById('fKalem').value.trim(),
-    tutar:     parseFloat(document.getElementById('fTutar').value),
-    tarih:     document.getElementById('fTarih').value,
-    donem_ay:  parseInt(document.getElementById('fAy').value),
+    kalem: document.getElementById('fKalem').value.trim(),
+    tutar: parseFloat(document.getElementById('fTutar').value),
+    tarih: document.getElementById('fTarih').value,
+    donem_ay: parseInt(document.getElementById('fAy').value),
     donem_yil: parseInt(document.getElementById('fYil').value),
-    notlar:    document.getElementById('fNotlar').value.trim(),
-    odendi:    document.getElementById('fOdendi').checked,
+    notlar: document.getElementById('fNotlar').value.trim(),
+    odendi: document.getElementById('fOdendi').checked,
   };
 
   if (editId) {
-    const idx = S.records.findIndex(x=>x.id===editId);
-    if (idx>-1) S.records[idx] = {...S.records[idx], ...data};
-    toast('Kayıt güncellendi!','ok');
+    const idx = S.records.findIndex(x => x.id === editId);
+    if (idx > -1) S.records[idx] = { ...S.records[idx], ...data };
+    toast('Kayıt güncellendi!', 'ok');
   } else {
     const taksit = parseInt(document.getElementById('fTaksit').value) || 1;
     if (taksit > 1) {
@@ -516,7 +523,7 @@ function submitForm(e) {
         const formattedDate = `${rY}-${rM}-${rD}`;
 
         // Son taksitte kuruş farklarını yansıtarak toplam tutarı birebir eşitle
-        const tutarThisMonth = (i === taksit) 
+        const tutarThisMonth = (i === taksit)
           ? parseFloat((data.tutar - (aylikTutar * (taksit - 1))).toFixed(2))
           : aylikTutar;
 
@@ -533,8 +540,8 @@ function submitForm(e) {
       }
       toast(`${taksit} taksitli borç eklendi!`, 'ok');
     } else {
-      S.records.push({id:nextId(), ...data});
-      toast('Yeni borç eklendi!','ok');
+      S.records.push({ id: nextId(), ...data });
+      toast('Yeni borç eklendi!', 'ok');
     }
   }
 
@@ -572,17 +579,17 @@ function updateBulkDeleteButton() {
   const btn = document.getElementById('btnBulkDelete');
   const countSpan = document.getElementById('bulkDelCount');
   if (!btn) return;
-  
+
   const visibleIds = Array.from(document.querySelectorAll('.row-sel-cb')).map(el => parseInt(el.getAttribute('data-id')));
   const selectedVisibleCount = visibleIds.filter(id => S.selectedIds.has(id)).length;
-  
+
   if (selectedVisibleCount > 0) {
     btn.style.display = 'inline-flex';
     countSpan.textContent = selectedVisibleCount;
   } else {
     btn.style.display = 'none';
   }
-  
+
   const selectAllCb = document.getElementById('selectAll');
   if (selectAllCb) {
     if (visibleIds.length > 0) {
@@ -598,7 +605,7 @@ function updateBulkDeleteButton() {
 // ── DELETE ────────────────────────────────────────────
 function openDelModal(id) {
   S.delId = id;
-  const r = S.records.find(x=>x.id===id);
+  const r = S.records.find(x => x.id === id);
   document.getElementById('delMsg').textContent =
     `"${r?.kalem}" kaydını silmek istediğinize emin misiniz? Bu işlem geri alınamaz.`;
   showOverlay();
@@ -609,34 +616,34 @@ function openBulkDelModal() {
   S.delId = 'bulk';
   const visibleIds = Array.from(document.querySelectorAll('.row-sel-cb')).map(el => parseInt(el.getAttribute('data-id')));
   const selectedVisibleCount = visibleIds.filter(id => S.selectedIds.has(id)).length;
-  
+
   document.getElementById('delMsg').textContent =
     `Seçilen ${selectedVisibleCount} kaydı silmek istediğinize emin misiniz? Bu işlem geri alınamaz.`;
   showOverlay();
   document.getElementById('delModal').classList.add('open');
 }
 
-function closeDelModal(){
+function closeDelModal() {
   document.getElementById('delModal').classList.remove('open');
   hideOverlay();
-  S.delId=null;
+  S.delId = null;
 }
 
-function confirmDelete(){
+function confirmDelete() {
   if (!S.delId) return;
   if (S.delId === 'bulk') {
     const visibleIds = Array.from(document.querySelectorAll('.row-sel-cb')).map(el => parseInt(el.getAttribute('data-id')));
     const toDelete = visibleIds.filter(id => S.selectedIds.has(id));
-    
+
     S.records = S.records.filter(x => !toDelete.includes(x.id));
     toDelete.forEach(id => S.selectedIds.delete(id));
-    
+
     toast(`${toDelete.length} kayıt silindi.`, 'info');
   } else {
-    const r = S.records.find(x=>x.id===S.delId);
-    S.records = S.records.filter(x=>x.id!==S.delId);
+    const r = S.records.find(x => x.id === S.delId);
+    S.records = S.records.filter(x => x.id !== S.delId);
     S.selectedIds.delete(S.delId);
-    toast(`"${r?.kalem}" silindi.`,'info');
+    toast(`"${r?.kalem}" silindi.`, 'info');
   }
   dbSave();
   closeDelModal();
@@ -649,7 +656,7 @@ function confirmDelete(){
 function copyToNextMonth(id) {
   const r = S.records.find(x => x.id === id);
   if (!r) return;
-  let ay  = r.donem_ay  + 1;
+  let ay = r.donem_ay + 1;
   let yil = r.donem_yil;
   if (ay > 12) { ay = 1; yil++; }
 
@@ -659,19 +666,39 @@ function copyToNextMonth(id) {
 
   const kopya = {
     id: nextId(),
-    odendi:    false,
-    tarih:     d.toISOString().slice(0,10),
-    kalem:     r.kalem,
-    tutar:     r.tutar,
-    donem_ay:  ay,
+    odendi: false,
+    tarih: d.toISOString().slice(0, 10),
+    kalem: r.kalem,
+    tutar: r.tutar,
+    donem_ay: ay,
     donem_yil: yil,
-    notlar:    r.notlar || '',
+    notlar: r.notlar || '',
   };
   S.records.push(kopya);
   dbSave();
   buildDonemList();
   render();
   toast(`📋 ${MONTHS[ay]} ${yil}'e kopyalandı`, 'ok');
+}
+
+// ── NOT TOOLTIP (Mobile tap support) ─────────────────
+function toggleNotTooltip(el) {
+  const isActive = el.classList.contains('active');
+  // Close all open tooltips first
+  document.querySelectorAll('.not-icon.active').forEach(x => x.classList.remove('active'));
+  if (!isActive) {
+    el.classList.add('active');
+    // Close on outside tap
+    setTimeout(() => {
+      const handler = (e) => {
+        if (!el.contains(e.target)) {
+          el.classList.remove('active');
+          document.removeEventListener('click', handler);
+        }
+      };
+      document.addEventListener('click', handler);
+    }, 10);
+  }
 }
 
 // ── KLAVYE KISAYOLLARI ────────────────────────────────
@@ -703,8 +730,8 @@ function switchTab(tab, el) {
   el.classList.add('active');
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
   document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.remove('hidden');
-  if (tab === 'trend')  renderTrendChart();
-  if (tab === 'kalem')  renderKalemOzet();
+  if (tab === 'trend') renderTrendChart();
+  if (tab === 'kalem') renderKalemOzet();
   if (tab === 'yillik') renderYillikOzet();
 }
 
@@ -712,15 +739,15 @@ function switchTab(tab, el) {
 function renderTrendChart() {
   const ayMap = {};
   S.records.forEach(r => {
-    const k = `${r.donem_yil}-${String(r.donem_ay).padStart(2,'0')}`;
+    const k = `${r.donem_yil}-${String(r.donem_ay).padStart(2, '0')}`;
     if (!ayMap[k]) ayMap[k] = { label: MONTHS[r.donem_ay] + ' ' + r.donem_yil, odenen: 0, bekleyen: 0 };
-    if (r.odendi) ayMap[k].odenen  += r.tutar;
-    else          ayMap[k].bekleyen += r.tutar;
+    if (r.odendi) ayMap[k].odenen += r.tutar;
+    else ayMap[k].bekleyen += r.tutar;
   });
-  const keys   = Object.keys(ayMap).sort();
+  const keys = Object.keys(ayMap).sort();
   const labels = keys.map(k => ayMap[k].label);
   const odenen = keys.map(k => ayMap[k].odenen);
-  const bekl   = keys.map(k => ayMap[k].bekleyen);
+  const bekl = keys.map(k => ayMap[k].bekleyen);
 
   if (trendChart) trendChart.destroy();
   const ctx = document.getElementById('chartTrend').getContext('2d');
@@ -729,15 +756,15 @@ function renderTrendChart() {
     data: {
       labels,
       datasets: [
-        { label: 'Ödenen ₺',  data: odenen, backgroundColor: 'rgba(34,197,94,.7)',  borderRadius: 6 },
-        { label: 'Bekleyen ₺',data: bekl,   backgroundColor: 'rgba(244,63,94,.7)', borderRadius: 6 },
+        { label: 'Ödenen ₺', data: odenen, backgroundColor: 'rgba(34,197,94,.7)', borderRadius: 6 },
+        { label: 'Bekleyen ₺', data: bekl, backgroundColor: 'rgba(244,63,94,.7)', borderRadius: 6 },
       ]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { position: 'top' } },
       scales: {
-        y: { ticks: { callback: v => (v/1000).toFixed(0) + 'K ₺' }, grid: { color: '#f1f5f9' } },
+        y: { ticks: { callback: v => (v / 1000).toFixed(0) + 'K ₺' }, grid: { color: '#f1f5f9' } },
         x: { grid: { display: false } }
       }
     }
@@ -753,13 +780,13 @@ function renderKalemOzet() {
     map[k].tutar += r.tutar;
     map[k].adet++;
   });
-  const sorted = Object.entries(map).sort((a,b) => b[1].tutar - a[1].tutar);
+  const sorted = Object.entries(map).sort((a, b) => b[1].tutar - a[1].tutar);
   const maxT = sorted[0]?.[1].tutar || 1;
 
   document.getElementById('kalemList').innerHTML = sorted.map(([ad, d]) => `
     <div class="kalem-row">
       <div class="kalem-name">${escH(ad)}</div>
-      <div class="kalem-bar-wrap"><div class="kalem-bar" style="width:${(d.tutar/maxT*100).toFixed(1)}%"></div></div>
+      <div class="kalem-bar-wrap"><div class="kalem-bar" style="width:${(d.tutar / maxT * 100).toFixed(1)}%"></div></div>
       <div class="kalem-tutar">${fmtTL(d.tutar)}</div>
       <div class="kalem-adet">${d.adet} kayıt</div>
     </div>`).join('');
@@ -771,8 +798,8 @@ function renderYillikOzet() {
   S.records.forEach(r => {
     const y = r.donem_yil;
     if (!yMap[y]) yMap[y] = { odenen: 0, bekleyen: 0 };
-    if (r.odendi) yMap[y].odenen  += r.tutar;
-    else          yMap[y].bekleyen += r.tutar;
+    if (r.odendi) yMap[y].odenen += r.tutar;
+    else yMap[y].bekleyen += r.tutar;
   });
   const years = Object.keys(yMap).sort();
   document.getElementById('yillikList').innerHTML = years.map(y => {
@@ -810,7 +837,7 @@ function calcBudget() {
   const bekleyenler = S.records
     .filter(r =>
       !r.odendi &&
-      (!S.donem_ay  || r.donem_ay  == S.donem_ay) &&
+      (!S.donem_ay || r.donem_ay == S.donem_ay) &&
       (!S.donem_yil || r.donem_yil == S.donem_yil)
     )
     .sort((a, b) => a.tarih.localeCompare(b.tarih)); // Tarihe göre sırala
@@ -836,13 +863,13 @@ function calcBudget() {
 
   // Sonuçları güncelle
   document.getElementById('bresBekleyen').textContent = fmtTL(toplamBekleyen);
-  document.getElementById('bresNakit').textContent    = nakit > 0 ? fmtTL(nakit) : '—';
-  document.getElementById('bresKapanir').textContent  = nakit > 0 ? fmtTL(kapananToplam) : '—';
+  document.getElementById('bresNakit').textContent = nakit > 0 ? fmtTL(nakit) : '—';
+  document.getElementById('bresKapanir').textContent = nakit > 0 ? fmtTL(kapananToplam) : '—';
 
   // Fark kartı
-  const farkCard  = document.getElementById('bresFarkCard');
+  const farkCard = document.getElementById('bresFarkCard');
   const farkLabel = document.getElementById('bresFarkLabel');
-  const farkVal   = document.getElementById('bresFark');
+  const farkVal = document.getElementById('bresFark');
 
   if (nakit <= 0) {
     farkCard.className = 'bres-card bres-fark';
@@ -860,8 +887,8 @@ function calcBudget() {
 
   // Detay listesi
   const detail = document.getElementById('budgetDetail');
-  const list   = document.getElementById('bdetailList');
-  const note   = document.getElementById('bdetailNote');
+  const list = document.getElementById('bdetailList');
+  const note = document.getElementById('bdetailNote');
 
   if (nakit <= 0 || bekleyenler.length === 0) {
     detail.style.display = 'none';
@@ -910,7 +937,7 @@ async function init() {
 
   // Sayfa açılınca güncel ayı seç
   const _now = new Date();
-  const _ay  = _now.getMonth() + 1;
+  const _ay = _now.getMonth() + 1;
   const _yil = _now.getFullYear();
 
   // Eğer o ay kayıt varsa onu aç, yoksa tüm dönemleri göster
@@ -927,7 +954,7 @@ init();
 
 async function exportJSON() {
   const json = JSON.stringify(S.records, null, 2);
-  const fileName = `ekoyonet_yedek_${new Date().toISOString().slice(0,10)}.json`;
+  const fileName = `ekoyonet_yedek_${new Date().toISOString().slice(0, 10)}.json`;
 
   // Modern tarayıcılarda native kaydet diyaloğu
   if (window.showSaveFilePicker) {
@@ -946,7 +973,7 @@ async function exportJSON() {
   } else {
     // Eski tarayıcı fallback
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([json], {type:'application/json'}));
+    a.href = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
     a.download = fileName;
     a.click();
     toast('Dosya indirildi!', 'ok');
@@ -964,12 +991,12 @@ function importJSON(e) {
       S.records = data;
       dbSave();
       buildDonemList();
-      selectDonem(null,null);
-      toast(`${data.length} kayıt içe aktarıldı!`,'ok');
-    } catch(err) {
-      toast('İçe aktarma hatası: '+err.message,'err');
+      selectDonem(null, null);
+      toast(`${data.length} kayıt içe aktarıldı!`, 'ok');
+    } catch (err) {
+      toast('İçe aktarma hatası: ' + err.message, 'err');
     }
-    e.target.value='';
+    e.target.value = '';
   };
   reader.readAsText(file);
 }
