@@ -415,7 +415,17 @@ function checkTodayDebts() {
   const alertEl = document.getElementById('todayAlert');
   const listEl = document.getElementById('todayAlertList');
   const totalEl = document.getElementById('todayAlertTotal');
-  if (!alertEl || !listEl || !totalEl) return;
+  if (!alertEl || !listEl) return;
+
+  // Toplam kutusunu kullanmıyoruz, gizliyoruz.
+  if (totalEl) {
+    totalEl.style.display = 'none';
+  }
+
+  const titleEl = document.getElementById('todayAlertTitle');
+  if (titleEl) {
+    titleEl.innerHTML = '🚨 Kritik Durumdaki Borçlar';
+  }
 
   if (IS_ALERT_DISMISSED) {
     alertEl.classList.add('hidden');
@@ -429,22 +439,44 @@ function checkTodayDebts() {
   const d = String(today.getDate()).padStart(2, '0');
   const todayStr = `${y}-${m}-${d}`;
 
-  const todayDebts = S.records.filter(r => !r.odendi && r.tarih === todayStr);
+  // Ödenmemiş borçları filtrele
+  const unpaid = S.records.filter(r => !r.odendi);
 
-  if (todayDebts.length === 0) {
+  const todayDebts = unpaid.filter(r => r.tarih === todayStr);
+  const overdueDebts = unpaid.filter(r => r.tarih < todayStr);
+
+  if (todayDebts.length === 0 && overdueDebts.length === 0) {
     alertEl.classList.add('hidden');
     return;
   }
 
-  // Kalemleri listele
-  listEl.innerHTML = todayDebts.map(r => `
-    <span class="today-alert-item">${escH(r.kalem)} (${fmtTL(r.tutar)})</span>
-  `).join('');
+  let listHTML = '';
 
-  // Toplam tutarı hesapla
-  const total = todayDebts.reduce((sum, r) => sum + r.tutar, 0);
-  totalEl.textContent = fmtTL(total);
+  // 1. Gecikmiş Borçlar (Üstte)
+  if (overdueDebts.length > 0) {
+    listHTML += overdueDebts.map(r => `
+      <div class="today-alert-row alert-row-overdue">
+        <span class="subgroup-label label-overdue">⚠ Gecikmiş</span>
+        <span class="alert-row-kalem">${escH(r.kalem)}</span>
+        <span class="alert-row-date">Vade: ${fmtDate(r.tarih)}</span>
+        <span class="alert-row-tutar">${fmtTL(r.tutar)}</span>
+      </div>
+    `).join('');
+  }
 
+  // 2. Bugünün Borçları (Altta)
+  if (todayDebts.length > 0) {
+    listHTML += todayDebts.map(r => `
+      <div class="today-alert-row alert-row-today">
+        <span class="subgroup-label label-today">⏰ Bugün</span>
+        <span class="alert-row-kalem">${escH(r.kalem)}</span>
+        <span class="alert-row-date">Vade: ${fmtDate(r.tarih)}</span>
+        <span class="alert-row-tutar">${fmtTL(r.tutar)}</span>
+      </div>
+    `).join('');
+  }
+
+  listEl.innerHTML = listHTML;
   alertEl.classList.remove('hidden');
 }
 
