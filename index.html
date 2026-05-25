@@ -64,6 +64,19 @@
       </div>
     </header>
 
+    <!-- BUGÜNÜN BORÇ UYARISI -->
+    <div id="todayAlert" class="today-alert hidden">
+      <div class="today-alert-inner">
+        <div class="today-alert-icon">🔔</div>
+        <div class="today-alert-content">
+          <div class="today-alert-title">Bugün Vadesi Dolan Borçlar</div>
+          <div id="todayAlertList" class="today-alert-list"></div>
+        </div>
+        <div class="today-alert-total" id="todayAlertTotal"></div>
+        <button class="today-alert-close" onclick="closeTodayAlert()" aria-label="Kapat">✕</button>
+      </div>
+    </div>
+
     <!-- KPI -->
     <section class="kpi-section">
       <div class="kpi-card">
