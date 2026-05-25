@@ -358,18 +358,18 @@ function render() {
         : '';
       return `
       <div class="debt-card ${cls}" id="card-${r.id}">
-        <div class="dc-top">
-          <div class="dc-kalem">
-            <button class="check-btn ${r.odendi ? 'checked' : ''}" onclick="toggleOdeme(${r.id})" title="${r.odendi ? 'Ödendi — geri al' : 'Öde'}">✓</button>
-            <div class="dc-kalem-text">
-              <span class="kalem-cell">${escH(r.kalem)}${tag}${notIcon}</span>
-              <div class="dc-meta">
-                <span class="dc-tarih">📅 ${fmtDate(r.tarih)}</span>
-                <span class="donem-pill">${MONTHS[r.donem_ay]} ${r.donem_yil}</span>
-              </div>
-            </div>
+        <div class="dc-body">
+          <div class="dc-header">
+            <button class="check-btn dc-check ${r.odendi ? 'checked' : ''}" onclick="toggleOdeme(${r.id})" title="${r.odendi ? 'Ödendi — geri al' : 'Ödenmedi — işaretle'}">✓</button>
+            <span class="dc-kalem-name">${escH(r.kalem)}${notIcon}</span>
           </div>
-          <span class="dc-tutar ${r.odendi ? 'tutar-paid' : ''}">${fmtTL(r.tutar)}</span>
+          <div class="dc-amount-row">
+            <span class="dc-tutar ${r.odendi ? 'tutar-paid' : ''}">${fmtTL(r.tutar)}</span>
+          </div>
+          <div class="dc-footer-row">
+            <span class="dc-tarih">📅 ${fmtDate(r.tarih)}</span>
+            ${tag}
+          </div>
         </div>
         <div class="dc-actions">
           <input type="checkbox" class="row-sel-cb" data-id="${r.id}" onchange="toggleSelectRow(${r.id}, this)" ${S.selectedIds.has(r.id) ? 'checked' : ''}>
