@@ -313,7 +313,7 @@ function render() {
         <div style="font-size:15px;font-weight:600;color:var(--t2);margin-bottom:4px">Kayıt bulunamadı</div>
         <div style="font-size:13px;color:var(--t3)">Filtre veya arama kriterini değiştirin</div>
       </div>`;
-    tbody.innerHTML = `<tr><td colspan="7" style="padding:0">${emptyHTML}</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" style="padding:0">${emptyHTML}</td></tr>`;
     const cardList = document.getElementById('cardList');
     if (cardList) cardList.innerHTML = emptyHTML;
     document.getElementById('tableFooter').innerHTML = '0 kayıt';
@@ -336,7 +336,6 @@ function render() {
       </td>
       <td>${fmtDate(r.tarih)}</td>
       <td class="kalem-cell">${escH(r.kalem)}${tag}${notIcon}</td>
-      <td><span class="donem-pill">${MONTHS[r.donem_ay]} ${r.donem_yil}</span></td>
       <td class="tutar-cell ${r.odendi ? 'tutar-paid' : ''}">${fmtTL(r.tutar)}</td>
       <td class="col-act">
         <div class="action-btns">
@@ -362,8 +361,6 @@ function render() {
           <div class="dc-header">
             <button class="check-btn dc-check ${r.odendi ? 'checked' : ''}" onclick="toggleOdeme(${r.id})" title="${r.odendi ? 'Ödendi — geri al' : 'Ödenmedi — işaretle'}">✓</button>
             <span class="dc-kalem-name">${escH(r.kalem)}${notIcon}</span>
-          </div>
-          <div class="dc-amount-row">
             <span class="dc-tutar ${r.odendi ? 'tutar-paid' : ''}">${fmtTL(r.tutar)}</span>
           </div>
           <div class="dc-footer-row">
