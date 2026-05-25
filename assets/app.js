@@ -61,6 +61,7 @@ async function dbLoad() {
 }
 
 async function dbSave() {
+  IS_ALERT_DISMISSED = false;
   // Always save to localStorage as a safety copy
   localStorage.setItem(DB_KEY, JSON.stringify(S.records));
 
@@ -404,6 +405,55 @@ function render() {
     `<span>${rows.length} kayıt</span>${footerRightHTML}`;
 
   updateBulkDeleteButton();
+  checkTodayDebts();
+}
+
+// ── BUGÜNÜN BORÇ UYARISI HESAPLAMA ──────────────────────
+let IS_ALERT_DISMISSED = false;
+
+function checkTodayDebts() {
+  const alertEl = document.getElementById('todayAlert');
+  const listEl = document.getElementById('todayAlertList');
+  const totalEl = document.getElementById('todayAlertTotal');
+  if (!alertEl || !listEl || !totalEl) return;
+
+  if (IS_ALERT_DISMISSED) {
+    alertEl.classList.add('hidden');
+    return;
+  }
+
+  // Bugünün tarihini YYYY-MM-DD formatında al (yerel saate göre)
+  const today = new Date();
+  const y = today.getFullYear();
+  const m = String(today.getMonth() + 1).padStart(2, '0');
+  const d = String(today.getDate()).padStart(2, '0');
+  const todayStr = `${y}-${m}-${d}`;
+
+  const todayDebts = S.records.filter(r => !r.odendi && r.tarih === todayStr);
+
+  if (todayDebts.length === 0) {
+    alertEl.classList.add('hidden');
+    return;
+  }
+
+  // Kalemleri listele
+  listEl.innerHTML = todayDebts.map(r => `
+    <span class="today-alert-item">${escH(r.kalem)} (${fmtTL(r.tutar)})</span>
+  `).join('');
+
+  // Toplam tutarı hesapla
+  const total = todayDebts.reduce((sum, r) => sum + r.tutar, 0);
+  totalEl.textContent = fmtTL(total);
+
+  alertEl.classList.remove('hidden');
+}
+
+function closeTodayAlert() {
+  IS_ALERT_DISMISSED = true;
+  const alertEl = document.getElementById('todayAlert');
+  if (alertEl) {
+    alertEl.classList.add('hidden');
+  }
 }
 
 // ── TOGGLE PAYMENT ────────────────────────────────────
