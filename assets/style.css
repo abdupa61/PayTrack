@@ -1591,113 +1591,113 @@ textarea {
 
 .debt-card{
   background:var(--surface);
-  border:1px solid var(--border);
   border-radius:var(--r3);
   overflow:hidden;
-  box-shadow:var(--shadow-sm);
-  transition:box-shadow var(--tr), transform var(--tr);
-  border-left:4px solid var(--border-h);
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+  border-left:5px solid var(--border-h);
+  border-top:1px solid var(--border);
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow var(--tr);
 }
 
 .debt-card:active{
-  transform:scale(0.99);
-  box-shadow:none;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
 }
 
-/* Status color-coding on left border */
+/* Status color coding */
 .debt-card.is-paid{
-  background:var(--green-bg);
-  border-color:#86efac;
+  background:#f8fffe;
   border-left-color:#22c55e;
+  border-color:#bbf7d0;
 }
-.debt-card.is-paid .kalem-cell{
+.debt-card.is-paid .dc-kalem-name{
   text-decoration:line-through;
   color:var(--t3);
 }
 .debt-card.row-overdue{
-  background:#fff1f2;
-  border-color:#fecdd3;
+  background:#fffafa;
   border-left-color:#f43f5e;
+  border-color:#fecdd3;
 }
 .debt-card.row-due-soon{
-  background:#fffbeb;
-  border-color:#fde68a;
+  background:#fffdf5;
   border-left-color:#f59e0b;
+  border-color:#fde68a;
 }
 
-/* Card top row: check + name + amount */
-.dc-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-  padding:14px 14px 0;
+/* ── CARD BODY ── */
+.dc-body{
+  padding:14px 16px 12px;
 }
 
-.dc-kalem{
+/* Row 1: check + name */
+.dc-header{
   display:flex;
   align-items:flex-start;
-  gap:10px;
-  flex:1;
-  min-width:0;
+  gap:12px;
+  margin-bottom:10px;
 }
-.dc-kalem .check-btn{
+
+.dc-check{
   flex-shrink:0;
   margin-top:1px;
 }
-.dc-kalem-text{
-  min-width:0;
+
+.dc-kalem-name{
   flex:1;
-}
-.dc-kalem-text .kalem-cell{
-  font-size:14px;
+  font-size:15px;
   font-weight:700;
   color:var(--t1);
-  display:block;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  line-height:1.3;
-  margin-bottom:4px;
-}
-
-/* Amount badge on the right */
-.dc-tutar{
-  font-weight:800;
-  font-size:16px;
-  letter-spacing:-.5px;
-  white-space:nowrap;
-  flex-shrink:0;
-  color:var(--t1);
-  text-align:right;
-  background:var(--elevated);
-  border:1px solid var(--border);
-  border-radius:var(--r1);
-  padding:4px 10px;
   line-height:1.4;
-}
-.dc-tutar.tutar-paid{
-  color:var(--t3);
-  background:var(--bg);
+  word-break:break-word;
 }
 
-/* Meta info row */
-.dc-meta{
+/* Row 2: amount */
+.dc-amount-row{
   display:flex;
   align-items:center;
-  gap:6px;
-  padding:6px 14px 10px 52px; /* indent to align with text, past check-btn */
-  flex-wrap:wrap;
-}
-.dc-tarih{
-  font-size:11px;
-  color:var(--t3);
-  display:inline-flex;
-  align-items:center;
-  gap:3px;
+  justify-content:space-between;
+  padding-left:46px; /* align under kalem name */
+  margin-bottom:8px;
 }
 
-/* Actions bar */
+.dc-tutar{
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:-.8px;
+  color:var(--t1);
+  line-height:1;
+}
+
+.dc-tutar.tutar-paid{
+  color:var(--t3);
+  font-size:18px;
+}
+
+/* Row 3: date + status tags */
+.dc-footer-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  padding-left:46px;
+}
+
+.dc-tarih{
+  font-size:12px;
+  font-weight:500;
+  color:var(--t2);
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  background:var(--elevated);
+  border:1px solid var(--border);
+  padding:3px 8px;
+  border-radius:99px;
+}
+
+/* ── ACTIONS BAR ── */
 .dc-actions{
   display:flex;
   align-items:center;
@@ -1707,19 +1707,18 @@ textarea {
   background:var(--elevated);
 }
 .dc-actions .row-sel-cb{
-  margin-right:2px;
-  width:18px;
-  height:18px;
+  width:20px;
+  height:20px;
   flex-shrink:0;
+  accent-color:var(--rose);
 }
-/* Push action buttons to right */
 .dc-actions-spacer{flex:1}
 .dc-actions .btn-copy,
 .dc-actions .btn-edit,
 .dc-actions .btn-del{
-  width:36px;
-  height:36px;
-  font-size:15px;
+  width:40px;
+  height:40px;
+  font-size:16px;
   border-radius:var(--r1);
 }
 
